@@ -128,7 +128,7 @@ const SubjectsList = () => {
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="all"></SelectItem>
+                <SelectItem value="all">All Departments</SelectItem>
                 {DEPARTMENT_OPTIONS.map((department) => (
                   <SelectItem key={department.value} value={department.value}>
                     {department.label}
