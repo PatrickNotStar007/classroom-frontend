@@ -1,7 +1,11 @@
 import { createDataProvider, CreateDataProviderOptions } from "@refinedev/rest";
-
-import { CreateResponse, GetOneResponse, ListResponse } from "@/types";
+import { ListResponse } from "@/types";
 import { BACKEND_BASE_URL } from "@/constants";
+
+if (!BACKEND_BASE_URL)
+  throw new Error(
+    "BACKEND_BASE_URL не установлена. Вставьте VITE_BACKEND_BASE_URL в .env",
+  );
 
 const options: CreateDataProviderOptions = {
   getList: {
@@ -28,13 +32,13 @@ const options: CreateDataProviderOptions = {
     },
 
     mapResponse: async (response) => {
-      const payload: ListResponse = await response.json();
+      const payload: ListResponse = await response.clone().json();
 
       return payload.data ?? [];
     },
 
     getTotalCount: async (response) => {
-      const payload: ListResponse = await response.json();
+      const payload: ListResponse = await response.clone().json();
 
       return payload.pagination?.total ?? payload.data?.length ?? 0;
     },
