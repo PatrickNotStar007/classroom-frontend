@@ -82,7 +82,7 @@ const Create = () => {
 
   const bannerPublicId = form.watch("bannerCldPubId");
 
-  const setBannerImage = (field, file) => {
+  const setBannerImage = (field: any, file: any) => {
     if (file) {
       field.onChange(file.url);
       form.setValue("bannerCldPubId", file.publicId, {
@@ -142,9 +142,7 @@ const Create = () => {
                                 }
                               : null
                           }
-                          onChange={(file: any, field: any) =>
-                            setBannerImage(file, field)
-                          }
+                          onChange={(file: any) => setBannerImage(file, field)}
                         />
                       </FormControl>
                       <FormMessage />
